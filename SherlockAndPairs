@@ -1,0 +1,67 @@
+def insertSort(x):
+    n = len(x)
+    for i in range(1,n):
+        key = a[i]
+        j = i-1
+        while(key<a[j] and j>=0):
+            a[j+1] = a[j]
+            j = j-1
+        a[j+1] = key
+
+def mergeSort(x):
+    res = []
+    if(len(x)<2):
+        return x
+    mid = int(len(x)/2)
+
+    y = mergeSort(x[mid:])
+    z = mergeSort(x[:mid])
+    while( len(y)>0 or len(z)>0):
+        if len(y)>0 and len(z)>0:
+            if(y[0]>z[0]):
+                res.append(z[0])
+                z.pop(0)
+            else:
+                res.append(y[0])
+                y.pop(0)
+        elif len(y) > 0:
+            for i in y:
+                res.append(y[0])
+                y.pop(0)
+        else:
+            for i in z:
+                res.append(z[0])
+                z.pop(0)
+    return res
+
+T = int(input())
+for i in range(T):
+    N = int(input())
+    a = [int(x) for x in input().strip().split(' ')]
+    if (N==1):
+        print (0)
+    else:
+        a = mergeSort(a)
+        prev = a[0]
+        k = 1
+        c = 0
+        while k < len(a):
+            ne = a[k]
+            lc = 0
+            while (ne == prev):
+                lc = lc + 1
+                k = k + 1
+                if k < len(a):
+                    ne = a[k]
+                else:
+                    break
+                
+            if lc > 2:
+                c = c + lc*(lc-1)
+            else:
+                prev = ne
+                
+            
+            
+        
+    
